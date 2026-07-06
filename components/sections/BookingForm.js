@@ -23,14 +23,36 @@ const initialForm = {
 export default function BookingForm() {
   const [form, setForm] = useState(initialForm);
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   function handleChange(field, value) {
     setForm((prev) => ({ ...prev, [field]: value }));
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Something went wrong. Please try again.");
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   if (submitted) {
@@ -158,11 +180,13 @@ export default function BookingForm() {
           />
         </div>
       </div>
+      {error ? <p className="mt-4 text-[13px] text-red-600">{error}</p> : null}
       <button
         type="submit"
-        className="mt-7 w-full bg-gold px-8 py-4 font-body text-[11.5px] font-medium uppercase tracking-[0.3em] text-navy-deep transition-colors duration-300 hover:bg-gold-soft"
+        disabled={loading}
+        className="mt-7 w-full bg-gold px-8 py-4 font-body text-[11.5px] font-medium uppercase tracking-[0.3em] text-navy-deep transition-colors duration-300 hover:bg-gold-soft disabled:cursor-not-allowed disabled:opacity-60"
       >
-        Submit Enquiry
+        {loading ? "Submitting…" : "Submit Enquiry"}
       </button>
     </form>
   );

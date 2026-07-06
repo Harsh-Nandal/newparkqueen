@@ -5,14 +5,36 @@ import { useState } from "react";
 export default function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   function handleChange(field, value) {
     setForm((prev) => ({ ...prev, [field]: value }));
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Something went wrong. Please try again.");
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   if (submitted) {
@@ -67,11 +89,13 @@ export default function ContactForm() {
           className="w-full border border-line bg-white px-4.5 py-3.5 font-body text-[14px] text-navy outline-none focus:border-gold"
         />
       </div>
+      {error ? <p className="text-[13px] text-red-600">{error}</p> : null}
       <button
         type="submit"
-        className="w-full bg-gold px-8 py-4 font-body text-[11.5px] font-medium uppercase tracking-[0.3em] text-navy-deep transition-colors duration-300 hover:bg-gold-soft"
+        disabled={loading}
+        className="w-full bg-gold px-8 py-4 font-body text-[11.5px] font-medium uppercase tracking-[0.3em] text-navy-deep transition-colors duration-300 hover:bg-gold-soft disabled:cursor-not-allowed disabled:opacity-60"
       >
-        Send Message
+        {loading ? "Sending…" : "Send Message"}
       </button>
     </form>
   );
