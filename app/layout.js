@@ -1,9 +1,7 @@
 import { Cinzel, Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import MotionProvider from "@/components/ui/MotionProvider";
-import { SITE } from "@/lib/data/site";
+import { getSettings } from "@/lib/content/getSettings";
 
 const cinzel = Cinzel({
   variable: "--font-cinzel",
@@ -24,29 +22,31 @@ const jost = Jost({
   weight: ["300", "400", "500", "600"],
 });
 
-export const metadata = {
-  metadataBase: new URL(SITE.url),
-  title: {
-    default: `${SITE.name} — Rohtak's Pride, Haryana's Finest`,
-    template: `%s — ${SITE.name}`,
-  },
-  description: SITE.description,
-  openGraph: {
-    title: `${SITE.name} — Rohtak's Pride, Haryana's Finest`,
-    description: SITE.description,
-    url: SITE.url,
-    siteName: SITE.name,
-    images: [{ url: "/images/hero.png", width: 1600, height: 900 }],
-    locale: "en_IN",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${SITE.name} — Rohtak's Pride, Haryana's Finest`,
-    description: SITE.description,
-    images: ["/images/hero.png"],
-  },
-};
+export async function generateMetadata() {
+  const settings = await getSettings();
+  const title = settings.seoTitle || `${settings.name} — Rohtak's Pride, Haryana's Finest`;
+
+  return {
+    metadataBase: new URL(settings.url),
+    title: { default: title, template: `%s — ${settings.name}` },
+    description: settings.seoDescription,
+    openGraph: {
+      title,
+      description: settings.seoDescription,
+      url: settings.url,
+      siteName: settings.name,
+      images: [{ url: settings.seoImage, width: 1600, height: 900 }],
+      locale: "en_IN",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: settings.seoDescription,
+      images: [settings.seoImage],
+    },
+  };
+}
 
 export default function RootLayout({ children }) {
   return (
@@ -55,11 +55,7 @@ export default function RootLayout({ children }) {
       className={`${cinzel.variable} ${cormorant.variable} ${jost.variable}`}
     >
       <body className="flex min-h-screen flex-col bg-white text-ink antialiased">
-        <MotionProvider>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </MotionProvider>
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   );

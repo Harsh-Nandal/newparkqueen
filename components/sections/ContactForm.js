@@ -70,6 +70,7 @@ export default function ContactForm() {
         <input
           id="email"
           type="email"
+          suppressHydrationWarning
           required
           value={form.email}
           onChange={(e) => handleChange("email", e.target.value)}

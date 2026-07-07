@@ -1,25 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CONTACT, NAV_LINKS } from "@/lib/data/site";
+import { NAV_LINKS } from "@/lib/data/site";
 import MobileNav from "@/components/layout/MobileNav";
 
-export default function Header() {
+export default function Header({ settings }) {
   return (
     <header className="sticky top-0 z-100 border-b border-line-light bg-navy-deep/90 backdrop-blur-md">
       <div className="hidden bg-navy-deep text-[12px] tracking-[0.08em] text-ivory/78 md:block">
         <div className="mx-auto flex h-[38px] w-[92%] max-w-[1240px] items-center justify-between">
           <div className="flex gap-6.5">
-            {CONTACT.phones.map((phone) => (
+            {settings.phones.map((phone) => (
               <a key={phone} href={`tel:${phone}`} className="hover:text-gold-soft">
                 ✆ {phone}
               </a>
             ))}
           </div>
           <div className="flex gap-4.5">
-            <a href={`mailto:${CONTACT.email}`} className="hover:text-gold-soft">
-              ✉ {CONTACT.email}
+            <a href={`mailto:${settings.email}`} className="hover:text-gold-soft">
+              ✉ {settings.email}
             </a>
-            <span>{CONTACT.city}</span>
+            <span>{settings.city}</span>
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-3.5">
           <Image
             src="/images/logo.png"
-            alt="The ParkQueen Hotel & Resort's"
+            alt={settings.name}
             width={160}
             height={52}
             className="h-13 w-auto object-contain"
@@ -50,12 +50,6 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-5.5">
-          <Link
-            href="/admin/login"
-            className="hidden font-body text-[11px] uppercase tracking-[0.26em] text-ivory/82 lg:inline"
-          >
-            Login / Join
-          </Link>
           <Link
             href="/booking"
             className="hidden bg-gold px-6.5 py-3.25 font-body text-[10.5px] font-medium uppercase tracking-[0.3em] text-navy-deep transition-colors duration-300 hover:bg-gold-soft lg:inline-block"

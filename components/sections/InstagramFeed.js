@@ -12,9 +12,14 @@ export default function InstagramFeed() {
           <span className="flex items-center gap-2.5 font-body text-[11px] font-medium uppercase tracking-[0.42em] text-gold">
             <FiInstagram className="h-4 w-4" /> Follow Along
           </span>
-          <h2 className="font-display text-[clamp(22px,2.6vw,32px)] font-medium uppercase tracking-[0.14em] text-navy">
-            @ParkQueenHotels
-          </h2>
+          <a
+            href="https://www.instagram.com/parkqueenhotel_rohtak/?hl=en"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-display text-[clamp(22px,2.6vw,32px)] font-medium uppercase tracking-[0.14em] text-navy hover:text-gold"
+          >
+            @parkqueenhotel_rohtak
+          </a>
         </Reveal>
         <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-3 lg:grid-cols-6">
           {INSTAGRAM_POSTS.map((post, i) => (

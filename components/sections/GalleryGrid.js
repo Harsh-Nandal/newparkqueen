@@ -4,16 +4,15 @@ import { useState } from "react";
 import Image from "next/image";
 import { GALLERY_CATEGORIES, GALLERY_IMAGES } from "@/lib/data/gallery";
 
-export default function GalleryGrid() {
+export default function GalleryGrid({ images = GALLERY_IMAGES, categories = GALLERY_CATEGORIES }) {
   const [active, setActive] = useState("All");
 
-  const filtered =
-    active === "All" ? GALLERY_IMAGES : GALLERY_IMAGES.filter((item) => item.category === active);
+  const filtered = active === "All" ? images : images.filter((item) => item.category === active);
 
   return (
     <div>
       <div className="mb-11 flex flex-wrap justify-center gap-3">
-        {GALLERY_CATEGORIES.map((category) => (
+        {categories.map((category) => (
           <button
             key={category}
             onClick={() => setActive(category)}

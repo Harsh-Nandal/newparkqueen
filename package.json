@@ -6,10 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seed:admin": "node --env-file=.env scripts/seed-admin.mjs"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "framer-motion": "^12.42.2",
+    "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.7.3",
     "next": "16.2.10",
     "nodemailer": "^9.0.3",

@@ -53,13 +53,6 @@ export default function MobileNav({ navLinks }) {
                 </Link>
               ))}
               <Link
-                href="/admin/login"
-                onClick={() => setOpen(false)}
-                className="font-body text-sm uppercase tracking-[0.26em] text-ivory/70"
-              >
-                Login / Join
-              </Link>
-              <Link
                 href="/booking"
                 onClick={() => setOpen(false)}
                 className="bg-gold px-8 py-4 font-body text-xs font-medium uppercase tracking-[0.3em] text-navy-deep"

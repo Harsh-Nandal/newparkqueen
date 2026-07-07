@@ -4,12 +4,12 @@ import { useState } from "react";
 import { FiPlus } from "react-icons/fi";
 import { FAQS } from "@/lib/data/faqs";
 
-export default function FaqAccordion() {
+export default function FaqAccordion({ items = FAQS }) {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
     <div className="divide-y divide-line border-y border-line">
-      {FAQS.map((faq, i) => {
+      {items.map((faq, i) => {
         const open = openIndex === i;
         return (
           <div key={faq.question}>

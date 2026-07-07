@@ -7,16 +7,10 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
-import { SITE } from "@/lib/data/site";
+import { HERO_SLIDES, HERO_CONTENT } from "@/lib/data/homepage";
 
-const SLIDES = [
-  "/images/hero.png",
-  "/images/home/NDS_5001.jpg",
-  "/images/home/NDS_5148.jpg",
-  "/images/home/NDS_5344.jpg",
-];
-
-export default function Hero() {
+export default function Hero({ slides = HERO_SLIDES, content = HERO_CONTENT }) {
+  const SLIDES = slides;
   return (
     <section className="relative isolate grid min-h-[600px] place-items-end text-ivory">
       <div className="absolute inset-0 -z-20">
@@ -29,8 +23,8 @@ export default function Hero() {
           speed={1200}
           className="h-full w-full"
         >
-          {SLIDES.map((src) => (
-            <SwiperSlide key={src}>
+          {SLIDES.map((src, idx) => (
+            <SwiperSlide key={idx}>
               <div className="relative h-full min-h-[600px] w-full">
                 <Image
                   src={src}
@@ -55,15 +49,15 @@ export default function Hero() {
         </Reveal>
         <Reveal delay={0.12}>
           <h1 className="font-display text-[clamp(34px,5.4vw,68px)] font-medium uppercase leading-[1.18] tracking-[0.12em] text-gold-soft">
-            {SITE.heroTitle}
+            {content.heroTitle}
           </h1>
         </Reveal>
         <Reveal delay={0.24}>
           <p className="mx-auto mt-6.5 max-w-[52ch] font-serif text-[clamp(19px,2.2vw,26px)] italic text-ivory/90">
-            {SITE.heroSubtitle}
+            {content.heroSubtitle}
           </p>
           <p className="mt-3 font-body text-[13px] uppercase tracking-[0.34em] text-ivory/70">
-            {SITE.heroTagline}
+            {content.heroTagline}
           </p>
         </Reveal>
         <Reveal delay={0.36}>

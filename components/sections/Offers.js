@@ -4,7 +4,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import { OFFERS } from "@/lib/data/offers";
 
-export default function Offers() {
+export default function Offers({ items = OFFERS }) {
   return (
     <section className="bg-ivory py-27.5">
       <Container>
@@ -20,7 +20,7 @@ export default function Offers() {
           description="Seasonal packages and curated experiences designed to make your stay at The ParkQueen Hotel even more memorable."
         />
         <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-5">
-          {OFFERS.map((offer, i) => (
+          {items.map((offer, i) => (
             <Reveal key={offer.title} delay={(i % 5) * 0.08} as="article" className="group relative overflow-hidden shadow-luxury">
               <div className="relative aspect-3/4">
                 <Image

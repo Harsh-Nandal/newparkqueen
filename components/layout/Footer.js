@@ -1,8 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CONTACT, FOOTER_QUICK_LINKS, SITE, SOCIAL_LINKS } from "@/lib/data/site";
+import { FaFacebook, FaXTwitter, FaInstagram, FaLinkedin } from "react-icons/fa6";
+import { FOOTER_QUICK_LINKS } from "@/lib/data/site";
 
-export default function Footer() {
+const SOCIAL_ICONS = {
+  Facebook: FaFacebook,
+  Twitter: FaXTwitter,
+  Instagram: FaInstagram,
+  LinkedIn: FaLinkedin,
+};
+
+export default function Footer({ settings }) {
   return (
     <footer className="bg-navy-deep pt-22.5 text-ivory/72">
       <div className="mx-auto w-[92%] max-w-[1240px]">
@@ -11,7 +19,7 @@ export default function Footer() {
             <Link href="/" className="flex items-center gap-3.5">
               <Image
                 src="/images/logo.png"
-                alt={SITE.name}
+                alt={settings.name}
                 width={200}
                 height={66}
                 className="h-16.5 w-auto object-contain"
@@ -19,11 +27,12 @@ export default function Footer() {
             </Link>
             <p className="mt-5 max-w-[34ch] text-[13.5px]">
               Subscribe for the latest offers, celebrations and seasonal escapes from{" "}
-              {SITE.name}, Rohtak.
+              {settings.name}, {settings.city.split(",")[0]}.
             </p>
             <form className="mt-6.5 flex border border-gold/50">
               <input
                 type="email"
+                suppressHydrationWarning
                 placeholder="Enter your email address"
                 aria-label="Email address"
                 className="flex-1 bg-transparent px-4.5 py-3.5 font-body text-[13px] tracking-[0.06em] text-ivory placeholder:text-ivory/40 outline-none"
@@ -35,6 +44,23 @@ export default function Footer() {
                 Subscribe
               </button>
             </form>
+            <div className="mt-6.5 flex gap-4">
+              {settings.socialLinks.map((social) => {
+                const Icon = SOCIAL_ICONS[social.label];
+                return (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className="flex h-9 w-9 items-center justify-center border border-gold/40 text-ivory/80 transition-colors duration-300 hover:border-gold hover:text-gold-soft"
+                  >
+                    {Icon ? <Icon className="h-4 w-4" /> : social.label}
+                  </a>
+                );
+              })}
+            </div>
           </div>
 
           <div>
@@ -57,7 +83,7 @@ export default function Footer() {
               For Bookings
             </h4>
             <ul className="space-y-3.25">
-              {CONTACT.phones.map((phone) => (
+              {settings.phones.map((phone) => (
                 <li key={phone}>
                   <a href={`tel:${phone}`} className="text-[13.5px] hover:text-gold-soft">
                     {phone}
@@ -65,8 +91,8 @@ export default function Footer() {
                 </li>
               ))}
               <li>
-                <a href={`mailto:${CONTACT.email}`} className="text-[13.5px] hover:text-gold-soft">
-                  {CONTACT.email}
+                <a href={`mailto:${settings.email}`} className="text-[13.5px] hover:text-gold-soft">
+                  {settings.email}
                 </a>
               </li>
             </ul>
@@ -77,7 +103,7 @@ export default function Footer() {
               Visit Us
             </h4>
             <ul className="space-y-3.25 text-[13.5px]">
-              {CONTACT.addressLines.map((line) => (
+              {settings.addressLines.map((line) => (
                 <li key={line}>{line}</li>
               ))}
             </ul>
@@ -85,9 +111,9 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-3 py-6.5 text-xs tracking-[0.06em] text-ivory/45">
-          <span>© {new Date().getFullYear()} {SITE.name}. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} {settings.name}. All rights reserved.</span>
           <div className="flex gap-5">
-            {SOCIAL_LINKS.map((social) => (
+            {settings.socialLinks.map((social) => (
               <a
                 key={social.label}
                 href={social.href}
@@ -100,6 +126,12 @@ export default function Footer() {
             ))}
             <Link href="/privacy-policy" className="hover:text-gold-soft">
               Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:text-gold-soft">
+              Terms
+            </Link>
+            <Link href="/cancellation-policy" className="hover:text-gold-soft">
+              Cancellation Policy
             </Link>
           </div>
         </div>

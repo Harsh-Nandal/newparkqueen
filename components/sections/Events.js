@@ -5,7 +5,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import { BANQUET_TEASERS } from "@/lib/data/events";
 
-export default function Events() {
+export default function Events({ items = BANQUET_TEASERS }) {
   return (
     <section id="events" className="bg-ivory py-27.5">
       <Container>
@@ -21,7 +21,7 @@ export default function Events() {
           description="ParkQueen elevates every occasion into an awe-inspiring, immersive experience to cherish forever — the ideal place amid the bustling entertainment hub of Rohtak."
         />
         <div className="grid grid-cols-1 gap-8.5 md:grid-cols-2">
-          {BANQUET_TEASERS.map((event, i) => (
+          {items.map((event, i) => (
             <Reveal key={event.slug} delay={i * 0.12} as="article">
               <Link href={event.href} className="block">
                 <div className="relative aspect-[16/10] overflow-hidden shadow-luxury">

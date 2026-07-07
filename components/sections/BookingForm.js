@@ -9,19 +9,17 @@ function todayPlus(days) {
   return d.toISOString().split("T")[0];
 }
 
-const initialForm = {
-  checkIn: todayPlus(0),
-  checkOut: todayPlus(1),
-  adults: 2,
-  children: 0,
-  roomType: ROOMS[0].name,
-  name: "",
-  phone: "",
-  email: "",
-};
-
-export default function BookingForm() {
-  const [form, setForm] = useState(initialForm);
+export default function BookingForm({ rooms = ROOMS }) {
+  const [form, setForm] = useState({
+    checkIn: todayPlus(0),
+    checkOut: todayPlus(1),
+    adults: 2,
+    children: 0,
+    roomType: rooms[0].name,
+    name: "",
+    phone: "",
+    email: "",
+  });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -133,7 +131,7 @@ export default function BookingForm() {
             onChange={(e) => handleChange("roomType", e.target.value)}
             className="w-full border border-line bg-white px-4 py-3.5 font-body text-[14px] text-navy outline-none focus:border-gold"
           >
-            {ROOMS.map((room) => (
+            {rooms.map((room) => (
               <option key={room.slug} value={room.name}>
                 {room.name}
               </option>
@@ -173,6 +171,7 @@ export default function BookingForm() {
           <input
             id="email"
             type="email"
+            suppressHydrationWarning
             required
             value={form.email}
             onChange={(e) => handleChange("email", e.target.value)}

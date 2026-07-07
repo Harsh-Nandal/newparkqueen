@@ -2,8 +2,9 @@ import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import { AMENITIES } from "@/lib/data/amenities";
+import { getIcon } from "@/lib/iconMap";
 
-export default function Amenities() {
+export default function Amenities({ items = AMENITIES }) {
   return (
     <section id="amenities" className="py-27.5">
       <Container>
@@ -19,8 +20,8 @@ export default function Amenities() {
           description="Carefully chosen amenities and facilities, available in all forty rooms — so everything you need is already waiting for you."
         />
         <div className="grid grid-cols-1 gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-          {AMENITIES.map((amenity, i) => {
-            const Icon = amenity.icon;
+          {items.map((amenity, i) => {
+            const Icon = getIcon(amenity.icon);
             return (
               <Reveal
                 key={amenity.label}

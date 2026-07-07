@@ -5,7 +5,7 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import { ROOMS } from "@/lib/data/rooms";
 
-export default function Rooms() {
+export default function Rooms({ items = ROOMS }) {
   return (
     <section id="rooms" className="bg-ivory py-27.5">
       <Container>
@@ -22,7 +22,7 @@ export default function Rooms() {
         />
 
         <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-4">
-          {ROOMS.map((room, i) => (
+          {items.map((room, i) => (
             <Reveal key={room.slug} delay={i * 0.1} as="article" className="relative">
               <div className="relative aspect-[4/4.6] overflow-hidden shadow-luxury">
                 <Image
@@ -45,7 +45,7 @@ export default function Rooms() {
                   </em>
                 </div>
                 <Link
-                  href={`/rooms#${room.slug}`}
+                  href={`/rooms/${room.slug}`}
                   className="mt-3 inline-flex items-center gap-2.5 font-body text-[11px] font-medium uppercase tracking-[0.34em] text-navy after:text-gold after:transition-transform after:duration-300 after:content-['→'] hover:after:translate-x-1.5"
                 >
                   View Details
