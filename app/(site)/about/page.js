@@ -1,7 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FiCheck } from "react-icons/fi";
 import PageHero from "@/components/sections/PageHero";
-import GalleryPreview from "@/components/sections/GalleryPreview";
 import Testimonials from "@/components/sections/Testimonials";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
@@ -9,9 +9,23 @@ import Reveal from "@/components/ui/Reveal";
 import Button from "@/components/ui/Button";
 import { getAboutContent } from "@/lib/content/getAboutContent";
 import { getTestimonials } from "@/lib/content/getTestimonials";
-import { getGalleryImages } from "@/lib/content/getGallery";
 import { getSettings } from "@/lib/content/getSettings";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+
+const TAG_LINKS = {
+  "Premium Accommodation": "/rooms",
+  "Fine Dining": "/dining",
+  "Luxury Banquet": "/banquets",
+  "Family Friendly": "/facilities",
+};
+
+const EXPERIENCE_LINKS = {
+  "Luxury Rooms": "/rooms",
+  "Fine Dining": "/dining",
+  "Banquet Hall": "/banquets",
+  "Conference Hall": "/facilities",
+  Celebrations: "/banquets",
+};
 
 export async function generateMetadata() {
   const settings = await getSettings();
@@ -23,10 +37,9 @@ export async function generateMetadata() {
 }
 
 export default async function AboutPage() {
-  const [content, testimonials, gallery, settings] = await Promise.all([
+  const [content, testimonials, settings] = await Promise.all([
     getAboutContent(),
     getTestimonials("about"),
-    getGalleryImages(),
     getSettings(),
   ]);
   const { intro, ourStory, signatureExperiences, whyChoose, stats, amenitiesGrid, hospitalityFeatures, cta } = content;
@@ -39,6 +52,7 @@ export default async function AboutPage() {
       <section className="py-27.5">
         <Container className="grid grid-cols-1 items-center gap-16 lg:grid-cols-[0.85fr_1.15fr]">
           <Reveal className="relative aspect-4/5 overflow-hidden shadow-luxury">
+            <Link href="/rooms" className="absolute inset-0 z-10" aria-label="Explore our rooms" />
             <Image
               src={intro.image}
               alt={intro.title}
@@ -60,14 +74,24 @@ export default async function AboutPage() {
             ))}
             <Reveal delay={0.36}>
               <div className="mt-4 flex flex-wrap gap-3">
-                {intro.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="border border-gold/50 px-4 py-2 font-body text-[10.5px] uppercase tracking-[0.2em] text-navy"
-                  >
-                    {tag}
-                  </span>
-                ))}
+                {intro.tags.map((tag) =>
+                  TAG_LINKS[tag] ? (
+                    <Link
+                      key={tag}
+                      href={TAG_LINKS[tag]}
+                      className="border border-gold/50 px-4 py-2 font-body text-[10.5px] uppercase tracking-[0.2em] text-navy transition-colors duration-300 hover:border-gold hover:bg-gold/10"
+                    >
+                      {tag}
+                    </Link>
+                  ) : (
+                    <span
+                      key={tag}
+                      className="border border-gold/50 px-4 py-2 font-body text-[10.5px] uppercase tracking-[0.2em] text-navy"
+                    >
+                      {tag}
+                    </span>
+                  )
+                )}
               </div>
             </Reveal>
           </div>
@@ -118,17 +142,19 @@ export default async function AboutPage() {
                 delay={(i % 5) * 0.08}
                 className="group relative aspect-3/4 overflow-hidden shadow-luxury"
               >
-                <Image
-                  src={exp.image}
-                  alt={exp.title}
-                  fill
-                  sizes="(min-width: 1024px) 20vw, 50vw"
-                  className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.08]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/75 via-transparent to-transparent" />
-                <span className="absolute inset-x-0 bottom-4 text-center font-display text-[11px] uppercase tracking-[0.2em] text-ivory">
-                  {exp.title}
-                </span>
+                <Link href={EXPERIENCE_LINKS[exp.title] || "/rooms"} className="block h-full w-full">
+                  <Image
+                    src={exp.image}
+                    alt={exp.title}
+                    fill
+                    sizes="(min-width: 1024px) 20vw, 50vw"
+                    className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.08]"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-navy-deep/75 via-transparent to-transparent" />
+                  <span className="absolute inset-x-0 bottom-4 text-center font-display text-[11px] uppercase tracking-[0.2em] text-ivory">
+                    {exp.title}
+                  </span>
+                </Link>
               </Reveal>
             ))}
           </div>
@@ -158,6 +184,11 @@ export default async function AboutPage() {
                 <span className="font-body text-[14px] text-ivory/85">{item}</span>
               </Reveal>
             ))}
+          </div>
+          <div className="mt-11 text-center">
+            <Button href="/facilities" variant="ghostLight">
+              View All Facilities
+            </Button>
           </div>
         </Container>
       </section>
@@ -200,6 +231,9 @@ export default async function AboutPage() {
               </Reveal>
             ))}
           </div>
+          <div className="mt-11 text-center">
+            <Button href="/facilities">View All Facilities</Button>
+          </div>
         </Container>
       </section>
 
@@ -216,6 +250,7 @@ export default async function AboutPage() {
             ))}
           </div>
           <Reveal delay={0.12} className="relative aspect-16/11 overflow-hidden shadow-luxury">
+            <Link href="/contact" className="absolute inset-0 z-10" aria-label="Get in touch with our team" />
             <Image
               src="/images/dining/queenresturant.webp"
               alt="Meet our hospitality team"
@@ -226,19 +261,6 @@ export default async function AboutPage() {
           </Reveal>
         </Container>
       </section>
-
-      <GalleryPreview
-        items={gallery.images.slice(0, 13)}
-        eyebrow="A Closer Look"
-        title={
-          <>
-            Explore Our
-            <br />
-            Gallery
-          </>
-        }
-        showButton
-      />
 
       <Testimonials
         items={testimonials}

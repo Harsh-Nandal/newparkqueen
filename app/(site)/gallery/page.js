@@ -15,7 +15,7 @@ export async function generateMetadata() {
 }
 
 export default async function GalleryPage() {
-  const [{ images, categories }, settings] = await Promise.all([getGalleryImages(), getSettings()]);
+  const [{ images }, settings] = await Promise.all([getGalleryImages(), getSettings()]);
 
   return (
     <>
@@ -23,7 +23,7 @@ export default async function GalleryPage() {
       <PageHero title="Gallery" subtitle="Est. Rohtak, Haryana" />
       <section className="py-24">
         <Container>
-          <GalleryGrid images={images} categories={categories} />
+          <GalleryGrid images={images} />
         </Container>
       </section>
     </>
