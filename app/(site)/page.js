@@ -6,7 +6,6 @@ import Rooms from "@/components/sections/Rooms";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import Dining from "@/components/sections/Dining";
 import Events from "@/components/sections/Events";
-import GalleryPreview from "@/components/sections/GalleryPreview";
 import Amenities from "@/components/sections/Amenities";
 import Testimonials from "@/components/sections/Testimonials";
 import InstagramFeed from "@/components/sections/InstagramFeed";
@@ -19,7 +18,6 @@ import { getBanquetTeasers } from "@/lib/content/getBanquetTeasers";
 import { getAmenities } from "@/lib/content/getAmenities";
 import { getTestimonials } from "@/lib/content/getTestimonials";
 import { getOffers } from "@/lib/content/getOffers";
-import { getGalleryImages } from "@/lib/content/getGallery";
 
 export async function generateMetadata() {
   const settings = await getSettings();
@@ -31,7 +29,7 @@ export async function generateMetadata() {
 }
 
 export default async function Home() {
-  const [settings, heroSlides, homepageContent, rooms, banquetTeasers, amenities, testimonials, offers, gallery] =
+  const [settings, heroSlides, homepageContent, rooms, banquetTeasers, amenities, testimonials, offers] =
     await Promise.all([
       getSettings(),
       getHeroSlides(),
@@ -41,7 +39,6 @@ export default async function Home() {
       getAmenities(),
       getTestimonials("home"),
       getOffers(),
-      getGalleryImages(),
     ]);
 
   const hotelSchema = {
@@ -80,8 +77,6 @@ export default async function Home() {
       <Events items={banquetTeasers} />
       <Amenities items={amenities} />
       <Testimonials items={testimonials} />
-      
-      <GalleryPreview items={gallery.images.slice(0, 8)} />
       <InstagramFeed />
       <LocationMap addressLines={settings.addressLines} mapEmbedUrl={settings.mapEmbedUrl} />
     </>
