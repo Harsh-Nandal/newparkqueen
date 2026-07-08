@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -14,6 +15,7 @@ export default function Dining({ content = DINING_TEASER }) {
     <section id="dining" className="py-27.5">
       <Container className="grid grid-cols-1 items-center gap-16 lg:grid-cols-[1.15fr_0.85fr]">
         <Reveal className="relative aspect-16/11 overflow-hidden shadow-luxury">
+          <Link href="/dining" className="absolute inset-0 z-10" aria-label="Discover dining at The ParkQueen Hotel" />
           <Swiper
             modules={[Autoplay]}
             autoplay={{ delay: 4000, disableOnInteraction: false }}

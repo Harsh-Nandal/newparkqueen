@@ -1,6 +1,7 @@
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
+import Button from "@/components/ui/Button";
 import { AMENITIES } from "@/lib/data/amenities";
 import { getIcon } from "@/lib/iconMap";
 
@@ -35,6 +36,9 @@ export default function Amenities({ items = AMENITIES }) {
               </Reveal>
             );
           })}
+        </div>
+        <div className="mt-11 text-center">
+          <Button href="/facilities">View All Facilities</Button>
         </div>
       </Container>
     </section>

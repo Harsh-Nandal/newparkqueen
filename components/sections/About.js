@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
@@ -9,6 +10,7 @@ export default function About({ content = ABOUT_TEASER }) {
     <section className="py-27.5">
       <Container className="grid grid-cols-1 items-center gap-16 lg:grid-cols-[0.85fr_1.15fr]">
         <Reveal className="relative aspect-4/5 overflow-hidden shadow-luxury">
+          <Link href="/about" className="absolute inset-0 z-10" aria-label="Read more about The ParkQueen Hotel" />
           <Image
             src={content.image}
             alt="The ParkQueen Hotel facade"
