@@ -93,6 +93,7 @@ export default function ContactForm() {
       {error ? <p className="text-[13px] text-red-600">{error}</p> : null}
       <button
         type="submit"
+        suppressHydrationWarning
         disabled={loading}
         className="w-full bg-gold px-8 py-4 font-body text-[11.5px] font-medium uppercase tracking-[0.3em] text-navy-deep transition-colors duration-300 hover:bg-gold-soft disabled:cursor-not-allowed disabled:opacity-60"
       >

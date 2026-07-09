@@ -8,9 +8,10 @@ import "swiper/css/effect-fade";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
 import { HERO_SLIDES, HERO_CONTENT } from "@/lib/data/homepage";
+import { ensureMinSlides } from "@/lib/utils/ensureMinSlides";
 
 export default function Hero({ slides = HERO_SLIDES, content = HERO_CONTENT }) {
-  const SLIDES = slides;
+  const SLIDES = ensureMinSlides(slides);
   return (
     <section className="relative isolate grid min-h-[600px] place-items-end text-ivory">
       <div className="absolute inset-0 -z-20">

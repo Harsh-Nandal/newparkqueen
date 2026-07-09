@@ -25,13 +25,13 @@ export default function Header({ settings }) {
       </div>
 
       <div className="mx-auto flex h-[78px] w-[92%] max-w-[1240px] items-center justify-between">
-        <Link href="/" className="flex items-center gap-3.5">
+        <Link href="/" className="relative block h-13 w-40">
           <Image
             src="/images/logo.png"
             alt={settings.name}
-            width={160}
-            height={52}
-            className="h-13 w-auto object-contain"
+            fill
+            sizes="160px"
+            className="object-contain object-left"
             priority
           />
         </Link>

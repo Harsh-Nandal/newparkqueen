@@ -182,6 +182,7 @@ export default function BookingForm({ rooms = ROOMS }) {
       {error ? <p className="mt-4 text-[13px] text-red-600">{error}</p> : null}
       <button
         type="submit"
+        suppressHydrationWarning
         disabled={loading}
         className="mt-7 w-full bg-gold px-8 py-4 font-body text-[11.5px] font-medium uppercase tracking-[0.3em] text-navy-deep transition-colors duration-300 hover:bg-gold-soft disabled:cursor-not-allowed disabled:opacity-60"
       >

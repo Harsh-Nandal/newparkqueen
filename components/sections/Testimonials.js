@@ -9,6 +9,7 @@ import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import { TESTIMONIALS_HOME } from "@/lib/data/testimonials";
+import { ensureMinSlides } from "@/lib/utils/ensureMinSlides";
 
 export default function Testimonials({
   items = TESTIMONIALS_HOME,
@@ -21,6 +22,7 @@ export default function Testimonials({
     </>
   ),
 }) {
+  const slides = ensureMinSlides(items, 8);
   return (
     <section className="bg-navy-deep py-27.5 text-ivory">
       <Container>
@@ -36,8 +38,8 @@ export default function Testimonials({
             breakpoints={{ 768: { slidesPerView: 2 } }}
             className="testimonial-swiper pb-14"
           >
-            {items.map((t) => (
-              <SwiperSlide key={t.author}>
+            {slides.map((t, i) => (
+              <SwiperSlide key={`${t.author}-${i}`}>
                 <div className="h-full border border-line-light px-9 py-10">
                   <div className="mb-5 flex gap-1 text-gold">
                     {Array.from({ length: t.rating }).map((_, i) => (

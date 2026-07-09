@@ -7,13 +7,15 @@ export default function NotFound() {
   return (
     <div className="grid min-h-screen place-items-center bg-ivory px-6 text-center">
       <div>
-        <Image
-          src="/images/logo.png"
-          alt="The ParkQueen Hotel"
-          width={140}
-          height={46}
-          className="mx-auto mb-10 h-11 w-auto object-contain"
-        />
+        <div className="relative mx-auto mb-10 h-11 w-35">
+          <Image
+            src="/images/logo.png"
+            alt="The ParkQueen Hotel"
+            fill
+            sizes="140px"
+            className="object-contain"
+          />
+        </div>
         <span className="font-body text-[11px] font-medium uppercase tracking-[0.42em] text-gold">
           Error 404
         </span>

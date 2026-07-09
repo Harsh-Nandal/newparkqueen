@@ -9,8 +9,10 @@ import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
 import { DINING_TEASER } from "@/lib/data/dining";
+import { ensureMinSlides } from "@/lib/utils/ensureMinSlides";
 
 export default function Dining({ content = DINING_TEASER }) {
+  const images = ensureMinSlides(content.images);
   return (
     <section id="dining" className="py-27.5">
       <Container className="grid grid-cols-1 items-center gap-16 lg:grid-cols-[1.15fr_0.85fr]">
@@ -23,7 +25,7 @@ export default function Dining({ content = DINING_TEASER }) {
             speed={1000}
             className="h-full w-full"
           >
-            {content.images.map((src, idx) => (
+            {images.map((src, idx) => (
               <SwiperSlide key={idx}>
                 <div className="relative h-full w-full">
                   <Image src={src} alt="Signature dining at The ParkQueen Hotel" fill sizes="(min-width: 1024px) 55vw, 100vw" className="object-cover" />

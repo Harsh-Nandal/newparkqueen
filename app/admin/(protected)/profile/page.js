@@ -79,7 +79,7 @@ export default function ProfilePage() {
           />
         </div>
         {error ? <p className="text-sm text-red-600">{error}</p> : null}
-        <button type="submit" className="bg-navy px-6 py-2.5 text-xs font-medium uppercase tracking-wide text-white">
+        <button type="submit" suppressHydrationWarning className="bg-navy px-6 py-2.5 text-xs font-medium uppercase tracking-wide text-white">
           Save Changes
         </button>
       </form>

@@ -142,7 +142,7 @@ export default async function AboutPage() {
                 delay={(i % 5) * 0.08}
                 className="group relative aspect-3/4 overflow-hidden shadow-luxury"
               >
-                <Link href={EXPERIENCE_LINKS[exp.title] || "/rooms"} className="block h-full w-full">
+                <Link href={EXPERIENCE_LINKS[exp.title] || "/rooms"} className="relative block h-full w-full">
                   <Image
                     src={exp.image}
                     alt={exp.title}

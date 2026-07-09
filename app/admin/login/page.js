@@ -63,6 +63,7 @@ export default function AdminLoginPage() {
 
         <button
           type="submit"
+          suppressHydrationWarning
           disabled={loading}
           className="w-full bg-navy px-6 py-3 text-xs font-medium uppercase tracking-wide text-white disabled:opacity-60"
         >

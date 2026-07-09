@@ -16,13 +16,13 @@ export default function Footer({ settings }) {
       <div className="mx-auto w-[92%] max-w-[1240px]">
         <div className="grid grid-cols-1 gap-13.5 border-b border-line-light pb-16 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
           <div>
-            <Link href="/" className="flex items-center gap-3.5">
+            <Link href="/" className="relative block h-16.5 w-50">
               <Image
                 src="/images/logo.png"
                 alt={settings.name}
-                width={200}
-                height={66}
-                className="h-16.5 w-auto object-contain"
+                fill
+                sizes="200px"
+                className="object-contain object-left"
               />
             </Link>
             <p className="mt-5 max-w-[34ch] text-[13.5px]">
@@ -39,6 +39,7 @@ export default function Footer({ settings }) {
               />
               <button
                 type="submit"
+                suppressHydrationWarning
                 className="bg-gold px-6 font-body text-[10px] font-medium uppercase tracking-[0.3em] text-navy-deep"
               >
                 Subscribe
