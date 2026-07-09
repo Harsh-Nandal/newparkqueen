@@ -9,7 +9,7 @@ export default function NotFound() {
       <div>
         <div className="relative mx-auto mb-10 h-11 w-35">
           <Image
-            src="/images/logo.png"
+            src="https://res.cloudinary.com/dvanvxd7t/image/upload/v1783583266/parkqueen/logo.png"
             alt="The ParkQueen Hotel"
             fill
             sizes="140px"

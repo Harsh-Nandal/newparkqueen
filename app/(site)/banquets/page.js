@@ -25,7 +25,7 @@ export default async function BanquetsPage() {
   return (
     <>
       <BreadcrumbJsonLd siteUrl={settings.url} items={[{ name: "Home", path: "/" }, { name: "Banquets", path: "/banquets" }]} />
-      <PageHero title="Banquets & Conference" subtitle="Est. Rohtak, Haryana" image="/images/dining/conferencehall.png" />
+      <PageHero title="Banquets & Conference" subtitle="Est. Rohtak, Haryana" image="https://res.cloudinary.com/dvanvxd7t/image/upload/v1783583230/parkqueen/dining/conferencehall.png" />
 
       <section className="py-24">
         <Container className="grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
@@ -96,7 +96,7 @@ export default async function BanquetsPage() {
 
       <section className="relative isolate py-24 text-center text-ivory">
         <div className="absolute inset-0 -z-20">
-          <Image src="/images/events/NDS_5266.jpg" alt="Banquet hall at The ParkQueen Hotel" fill sizes="100vw" className="object-cover brightness-50" />
+          <Image src="https://res.cloudinary.com/dvanvxd7t/image/upload/v1783583237/parkqueen/events/nds-5266.jpg" alt="Banquet hall at The ParkQueen Hotel" fill sizes="100vw" className="object-cover brightness-50" />
         </div>
         <div className="absolute inset-0 -z-10 bg-navy-deep/55" />
         <Container>

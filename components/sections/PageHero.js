@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
 
-export default function PageHero({ title, subtitle, image = "/images/home/subhero.png" }) {
+export default function PageHero({ title, subtitle, image = "https://res.cloudinary.com/dvanvxd7t/image/upload/v1783583270/parkqueen/home/subhero.png" }) {
   return (
     <section className="relative isolate grid min-h-85 place-items-center text-center text-ivory">
       <div className="absolute inset-0 -z-20">

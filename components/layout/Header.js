@@ -27,7 +27,7 @@ export default function Header({ settings }) {
       <div className="mx-auto flex h-[78px] w-[92%] max-w-[1240px] items-center justify-between">
         <Link href="/" className="relative block h-13 w-40">
           <Image
-            src="/images/logo.png"
+            src="https://res.cloudinary.com/dvanvxd7t/image/upload/v1783583266/parkqueen/logo.png"
             alt={settings.name}
             fill
             sizes="160px"

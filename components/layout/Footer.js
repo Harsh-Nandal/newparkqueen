@@ -18,7 +18,7 @@ export default function Footer({ settings }) {
           <div>
             <Link href="/" className="relative block h-16.5 w-50">
               <Image
-                src="/images/logo.png"
+                src="https://res.cloudinary.com/dvanvxd7t/image/upload/v1783583266/parkqueen/logo.png"
                 alt={settings.name}
                 fill
                 sizes="200px"

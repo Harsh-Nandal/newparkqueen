@@ -47,7 +47,7 @@ export default async function Home() {
     name: settings.name,
     description: settings.description,
     url: settings.url,
-    image: `${settings.url}/images/hero.png`,
+    image: "https://res.cloudinary.com/dvanvxd7t/image/upload/v1783583257/parkqueen/hero.png",
     telephone: settings.phones[0],
     email: settings.email,
     address: {

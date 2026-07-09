@@ -32,7 +32,7 @@ export default async function ServicePage() {
   return (
     <>
       <BreadcrumbJsonLd siteUrl={settings.url} items={[{ name: "Home", path: "/" }, { name: "Services", path: "/service" }]} />
-      <PageHero title="Services" subtitle="Est. Rohtak, Haryana" image="/images/home/NDS_5001.jpg" />
+      <PageHero title="Services" subtitle="Est. Rohtak, Haryana" image="https://res.cloudinary.com/dvanvxd7t/image/upload/v1783583259/parkqueen/home/nds-5001.jpg" />
 
       <section className="py-24">
         <Container>

@@ -22,7 +22,7 @@ const defaults = {
   socialLinks: SOCIAL_LINKS,
   seoTitle: `${SITE.name} — Rohtak's Pride, Haryana's Finest`,
   seoDescription: SITE.description,
-  seoImage: "/images/hero.png",
+  seoImage: "https://res.cloudinary.com/dvanvxd7t/image/upload/v1783583257/parkqueen/hero.png",
 };
 
 export const { GET, PUT } = createSingletonHandlers(Settings, defaults);

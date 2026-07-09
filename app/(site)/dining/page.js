@@ -23,7 +23,7 @@ export default async function DiningPage() {
   return (
     <>
       <BreadcrumbJsonLd siteUrl={settings.url} items={[{ name: "Home", path: "/" }, { name: "Dining", path: "/dining" }]} />
-      <PageHero title="Dining Experience" subtitle="Est. Rohtak, Haryana" image="/images/dining/NDS_5117.jpg" />
+      <PageHero title="Dining Experience" subtitle="Est. Rohtak, Haryana" image="https://res.cloudinary.com/dvanvxd7t/image/upload/v1783583233/parkqueen/dining/nds-5117.jpg" />
 
       <section className="py-24 text-center">
         <Container>

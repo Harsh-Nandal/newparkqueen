@@ -252,7 +252,7 @@ export default async function AboutPage() {
           <Reveal delay={0.12} className="relative aspect-16/11 overflow-hidden shadow-luxury">
             <Link href="/contact" className="absolute inset-0 z-10" aria-label="Get in touch with our team" />
             <Image
-              src="/images/dining/queenresturant.webp"
+              src="https://res.cloudinary.com/dvanvxd7t/image/upload/v1783583232/parkqueen/dining/queenresturant.webp"
               alt="Meet our hospitality team"
               fill
               sizes="(min-width: 1024px) 45vw, 100vw"
